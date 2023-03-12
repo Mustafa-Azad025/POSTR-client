@@ -1,29 +1,32 @@
 import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
-import { useSession, getSession, signOut } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
+import SideHeader from "../components/Header/SideHeader";
+import HomePage from "../components/Home/HomePage";
+import Feed from "../components/Home/Feed";
 
 const Home: NextPage = () => {
 	const { data: session } = useSession();
 	return (
-		<div className="flex min-h-screen flex-col items-center justify-center py-2">
+		<>
 			<Head>
 				<title>PostR Home Page</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
 			{session ? (
-				<div
-					className="flex overflow-hidden scrollbar-hide"
-					onClick={() => signOut()}
-				>
-					sign out
+				<div className="flex overflow-hidden">
+					<SideHeader>
+						<HomePage />
+					</SideHeader>
+					<Feed />
 				</div>
 			) : (
 				<h2 className="w-[100vw] h-[100vh] items-center flex text-7xl font-bold">
 					Sorry To Say <br /> Some Error Occured
 				</h2>
 			)}
-		</div>
+		</>
 	);
 };
 

@@ -21,7 +21,8 @@
 		"**/*.tsx",
 		"lib/validate.js",
 		"model/registerUser.js",
-		"pages/api/auth/[...nextauth].ts"
+		"pages/api/auth/[...nextauth].ts",
+		"context/ChatManage.js"
 	],
 	"exclude": ["node_modules"]
 }

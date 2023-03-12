@@ -1,15 +1,19 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
-import { ApolloProvider } from "@apollo/client";
-import { client } from "./../graphql/apollo-client";
+import { QueryClientProvider, QueryClient } from "react-query";
+import ChatProvide from "../context/ChatManage";
+
+const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<ApolloProvider client={client}>
-			<SessionProvider session={pageProps.session}>
-				<Component {...pageProps} />
-			</SessionProvider>
-		</ApolloProvider>
+		<ChatProvide>
+			<QueryClientProvider client={queryClient}>
+				<SessionProvider session={pageProps.session}>
+					<Component {...pageProps} />
+				</SessionProvider>
+			</QueryClientProvider>
+		</ChatProvide>
 	);
 }
 
