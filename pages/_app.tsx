@@ -7,13 +7,13 @@ import ChatProvide from "../context/ChatManage";
 const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<ChatProvide>
+		<SessionProvider session={pageProps.session}>
 			<QueryClientProvider client={queryClient}>
-				<SessionProvider session={pageProps.session}>
+				<ChatProvide>
 					<Component {...pageProps} />
-				</SessionProvider>
+				</ChatProvide>
 			</QueryClientProvider>
-		</ChatProvide>
+		</SessionProvider>
 	);
 }
 

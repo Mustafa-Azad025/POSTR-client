@@ -6,7 +6,6 @@ const connectDB = async () => {
 			process.env.MONGODB_URI as string
 		);
 		if (connection.readyState == 1) {
-			// return Promise.resolve(true);
 			console.log("Connected to MongoDB");
 		}
 	} catch (error) {

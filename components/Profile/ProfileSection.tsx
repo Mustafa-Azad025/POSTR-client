@@ -23,7 +23,7 @@ function ProfileSection({ ids, handlePop }: any) {
 			return;
 		}
 		const result = await axios.post(
-			`http://localhost:5000/api/updateprofileone/`,
+			`https://postr-server.vercel.app/api/updateprofileone/`,
 			profileData
 		);
 		if (result?.data) {
@@ -38,7 +38,10 @@ function ProfileSection({ ids, handlePop }: any) {
 
 	return (
 		<div className="w-full right-0 left-0 mx-auto top-[5%] rounded bg-white shadow-md backdrop-blur absolute z-30 max-w-2xl">
-			<ImCancelCircle onClick={() => handlePop(false)} className="text-primary w-6 h-6 cursor-pointer relative top-6 left-4 z-40" />
+			<ImCancelCircle
+				onClick={() => handlePop(false)}
+				className="text-primary w-6 h-6 cursor-pointer relative top-6 left-4 z-40"
+			/>
 			<div
 				className="flex flex-col items-start justify-start p-6 bg-white shadow-2xl rounded-xl
             relative z-10"
@@ -55,7 +58,7 @@ function ProfileSection({ ids, handlePop }: any) {
 							Company/College
 						</p>
 						<input
-							placeholder="Mustafa"
+							placeholder="Company/College"
 							type="text"
 							name="company"
 							onChange={(e: any) => handleInput(e)}
@@ -121,13 +124,12 @@ function ProfileSection({ ids, handlePop }: any) {
 						</p>
 						<textarea
 							name="bio"
+							placeholder="Enter Bio"
 							onChange={(e: any) => handleInput(e)}
 							className="border placeholder-mid focus:outline-none
                   focus:border-dark w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
                   border-mid/50 rounded-md"
-						>
-							Message . . .
-						</textarea>
+						></textarea>
 					</div>
 					<div className="relative">
 						<button

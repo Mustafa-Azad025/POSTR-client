@@ -9,8 +9,6 @@ import moment from "moment";
 import { useSession } from "next-auth/react";
 import { useQuery } from "react-query";
 import { getUser } from "../../../lib/getUser";
-// import { useQuery } from "react-query";
-// import { getUser } from "../../../lib/getUser";
 
 function GroupMessageShow() {
 	const { groupSelect } = useChat();
@@ -29,7 +27,7 @@ function GroupMessageShow() {
 	const fetchMessage = async () => {
 		try {
 			const { data } = await axios.post(
-				`http://localhost:5000/api/recievemsg/`,
+				`https://postr-server.vercel.app/api/recievemsg/`,
 				{
 					chatId: [groupSelect]?.[0]?._id,
 				}
@@ -54,9 +52,12 @@ function GroupMessageShow() {
 	const deleteMessage = async (messageId: string, sennderId: string) => {
 		if (sennderId === cuserId) {
 			try {
-				await axios.post(`http://localhost:5000/api/deleteMessages/`, {
-					messageId: messageId,
-				});
+				await axios.post(
+					`https://postr-server.vercel.app/api/deleteMessages/`,
+					{
+						messageId: messageId,
+					}
+				);
 			} catch (error) {
 				alert("some error occur to delete");
 			}

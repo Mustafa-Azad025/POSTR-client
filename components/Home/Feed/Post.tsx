@@ -63,7 +63,7 @@ function Post({ id, name, image, postImg, mail, time, message }: any) {
 		onSnapshot(
 			query(collection(db, "posts", id, "comments"), orderBy("time", "desc")),
 			(snapshot: any) => {
-				setComment(snapshot.docs);
+				setComment(snapshot?.docs);
 			}
 		);
 	}, [db, id]);
@@ -84,6 +84,7 @@ function Post({ id, name, image, postImg, mail, time, message }: any) {
 				<div className="flex justify-between w-full">
 					<div className="flex items-center space-x-5">
 						<Image
+							priority
 							className="rounded-full cursor-pointer h-12 w-12"
 							src={image}
 							width={60}
@@ -125,12 +126,12 @@ function Post({ id, name, image, postImg, mail, time, message }: any) {
 				<div className="mt-4">
 					<p
 						className={`text-black ml-4 xl:mx-10 ${!big && "truncate"} ${
-							message.split(" ").length < 4 ? `my-4` : `mt-4`
+							message?.split(" ")?.length < 4 ? `my-4` : `mt-4`
 						}`}
 					>
 						{message}
 					</p>
-					{message.split(" ").length > 4 && (
+					{message?.split(" ")?.length > 4 && (
 						<p
 							onClick={() => setBig(!big)}
 							className="text-primary cursor-pointer ml-4 xl:mx-10 my-2"
@@ -142,11 +143,11 @@ function Post({ id, name, image, postImg, mail, time, message }: any) {
 				<div className="flex mx-auto justify-center">
 					{postImg && (
 						<Image
+							priority
 							src={postImg}
-							loading="lazy"
 							width={640}
 							height={300}
-							className="rounded-2xl h-auto"
+							className="w-auto rounded-2xl h-auto"
 							alt="image"
 						/>
 					)}

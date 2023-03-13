@@ -18,10 +18,9 @@ function Posts() {
 	let count = 0;
 	return (
 		<>
-			{/* <div className="overflow-x-hidden lg:mx-auto mb-[7.5rem]"> */}
 			<div className="absolute top-8 sm:top-6 left-[21%] sm:left-[10%] md:left-[25rem] right-[2%] max-w-[35rem] z-0 xl:max-w-3xl w-[-webkit-fill-available] h-[80vh] mx-auto overflow-y-scroll scrollbar-hide">
-				{posts.map((post: any) => (
-					<div className="-space-y-4">
+				{posts?.map((post: any) => (
+					<div key={count} className="-space-y-4">
 						<Post
 							key={count}
 							id={posts[count]?.id}

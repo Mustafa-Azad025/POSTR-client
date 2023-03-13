@@ -8,14 +8,17 @@ function FetchGroup() {
 		useChat();
 	const currentUserId = [currentUser][0]?._id;
 	const datas = async () => {
-		const data = await axios.post(`http://localhost:5000/api/messagefetch/`, {
-			id: currentUserId,
-		});
+		const data = await axios.post(
+			`https://postr-server.vercel.app/api/messagefetch/`,
+			{
+				id: currentUserId,
+			}
+		);
 		setChats(data?.data);
 	};
 	useEffect(() => {
 		datas();
-	}, []);
+	}, [chats]);
 
 	const isChatSelected = async (item: any) => {
 		setGroupSelect(item);

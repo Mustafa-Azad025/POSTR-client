@@ -7,6 +7,7 @@ module.exports = {
 			"firebasestorage.googleapis.com",
 			"imgs.search.brave.com",
 			"raw.githubusercontent.com",
+			"github.com",
 		],
 	},
 };

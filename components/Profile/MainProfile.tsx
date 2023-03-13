@@ -32,7 +32,7 @@ function MainProfile(ids: any) {
 	const [fullProfile, setFullProfile]: any = useState();
 	const createProfile = async () => {
 		try {
-			await axios.post(`http://localhost:5000/api/createProfile/`, {
+			await axios.post(`https://postr-server.vercel.app/api/createProfile/`, {
 				id: ids?.ids,
 			});
 		} catch (error) {
@@ -46,7 +46,7 @@ function MainProfile(ids: any) {
 	const getProfile = async () => {
 		try {
 			const res = await axios.post(
-				`http://localhost:5000/api/getprofilesingle/`,
+				`https://postr-server.vercel.app/api/getprofilesingle/`,
 				{
 					id: ids?.ids,
 				}
@@ -80,6 +80,7 @@ function MainProfile(ids: any) {
 								<Image
 									width={100}
 									height={100}
+									priority
 									className="h-auto w-full mx-auto"
 									src={fullProfile?.user?.image}
 									alt={fullProfile?.user?.name}
@@ -122,17 +123,17 @@ function MainProfile(ids: any) {
 									</span>
 									<span className="tracking-wide">About Me</span>
 								</div>
-								{fullProfile?.user?._id === user?._id &&
-									fullProfile?.user?.email === user?.email &&
-									fullProfile?.user?.name === user?.name && (
+								{fullProfile?.user?._id === user?.[0]?._id &&
+									fullProfile?.user?.email === user?.[0]?.email &&
+									fullProfile?.user?.name === user?.[0]?.name && (
 										<HiPencilAlt
 											onClick={() => setProfilePopup(true)}
 											className="w-5 h-5 cursor-pointer text-primary"
 										/>
 									)}
-								{fullProfile?.user?._id === user?._id &&
-									fullProfile?.user?.email === user?.email &&
-									fullProfile?.user?.name === user?.name &&
+								{fullProfile?.user?._id === user?.[0]?._id &&
+									fullProfile?.user?.email === user?.[0]?.email &&
+									fullProfile?.user?.name === user?.[0]?.name &&
 									profilePopup && (
 										<ProfileSection
 											ids={ids?.ids}
@@ -184,17 +185,17 @@ function MainProfile(ids: any) {
 									<h3 className="text-gray-600 text-sm font-semibold mb-4">
 										Follow Me On :
 									</h3>
-									{fullProfile?.user?._id === user?._id &&
-										fullProfile?.user?.email === user?.email &&
-										fullProfile?.user?.name === user?.name && (
+									{fullProfile?.user?._id === user?.[0]?._id &&
+										fullProfile?.user?.email === user?.[0]?.email &&
+										fullProfile?.user?.name === user?.[0]?.name && (
 											<HiPencilAlt
 												onClick={() => setSocialPopup(true)}
 												className="w-5 h-5 text-primary cursor-pointer"
 											/>
 										)}
-									{fullProfile?.user?._id === user?._id &&
-										fullProfile?.user?.email === user?.email &&
-										fullProfile?.user?.name === user?.name &&
+									{fullProfile?.user?._id === user?.[0]?._id &&
+										fullProfile?.user?.email === user?.[0]?.email &&
+										fullProfile?.user?.name === user?.[0]?.name &&
 										socialPopup && (
 											<SocialMedia
 												ids={ids?.ids}
@@ -208,9 +209,12 @@ function MainProfile(ids: any) {
 											className="block bg-white p-1 rounded-full"
 											href={`${fullProfile?.social?.github?.link}`}
 										>
-											<img
+											<Image
+												width={40}
+												height={40}
 												className="w-10 object-contain p-1 rounded-full text-primary"
 												src={fullProfile?.social?.github?.icon}
+												alt="Github Icon"
 											/>
 										</Link>
 										<span className="text-xs text-gray-500">
@@ -222,7 +226,10 @@ function MainProfile(ids: any) {
 											className="block bg-white p-1 rounded-full"
 											href={`${fullProfile?.social?.youtube?.link}`}
 										>
-											<img
+											<Image
+												width={40}
+												height={40}
+												alt="Youtuber Icon"
 												className="w-10 object-contain p-1 rounded-full text-primary"
 												src={fullProfile?.social?.youtube?.icon}
 											/>
@@ -236,7 +243,10 @@ function MainProfile(ids: any) {
 											className="block bg-white p-1 rounded-full"
 											href={`${fullProfile?.social?.facebook?.link}`}
 										>
-											<img
+											<Image
+												width={40}
+												height={40}
+												alt="Facebook Icon"
 												className="w-10 object-contain p-1 rounded-full text-primary"
 												src={fullProfile?.social?.facebook?.icon}
 											/>
@@ -250,7 +260,10 @@ function MainProfile(ids: any) {
 											className="block bg-white p-1 rounded-full"
 											href={`${fullProfile?.social?.twitter?.link}`}
 										>
-											<img
+											<Image
+												width={40}
+												height={40}
+												alt="Twitter Icon"
 												className="w-10 object-contain p-1 rounded-full text-primary"
 												src={fullProfile?.social?.twitter?.icon}
 											/>
@@ -264,7 +277,10 @@ function MainProfile(ids: any) {
 											className="block bg-white p-1 rounded-full"
 											href={`${fullProfile?.social?.instagram?.link}`}
 										>
-											<img
+											<Image
+												width={40}
+												height={40}
+												alt="Instagram Icon"
 												className="w-10 object-contain p-1 rounded-full text-primary"
 												src={fullProfile?.social?.instagram?.icon}
 											/>
@@ -278,7 +294,10 @@ function MainProfile(ids: any) {
 											className="block bg-white p-1 rounded-full"
 											href={`${fullProfile?.social?.linkedin?.link}`}
 										>
-											<img
+											<Image
+												width={40}
+												height={40}
+												alt="LinkedIn Icon"
 												className="w-10 object-contain p-1 rounded-full text-primary"
 												src={fullProfile?.social?.linkedin?.icon}
 											/>
@@ -303,17 +322,17 @@ function MainProfile(ids: any) {
 											<span className="tracking-wide">Experience</span>
 										</div>
 										<div className="flex items-center">
-											{fullProfile?.user?._id === user?._id &&
-												fullProfile?.user?.email === user?.email &&
-												fullProfile?.user?.name === user?.name && (
+											{fullProfile?.user?._id === user?.[0]?._id &&
+												fullProfile?.user?.email === user?.[0]?.email &&
+												fullProfile?.user?.name === user?.[0]?.name && (
 													<HiPencilAlt
 														onClick={() => setExperiencePopup(true)}
 														className="w-5 h-5 text-primary sm:mr-8 mb-2 cursor-pointer"
 													/>
 												)}
-											{fullProfile?.user?._id === user?._id &&
-												fullProfile?.user?.email === user?.email &&
-												fullProfile?.user?.name === user?.name &&
+											{fullProfile?.user?._id === user?.[0]?._id &&
+												fullProfile?.user?.email === user?.[0]?.email &&
+												fullProfile?.user?.name === user?.[0]?.name &&
 												experiencePopup && (
 													<Experience
 														handlePop={(e: boolean) =>
@@ -360,9 +379,9 @@ function MainProfile(ids: any) {
 														d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
 													/>
 													<path
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														stroke-width="2"
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth="2"
 														d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
 													/>
 												</svg>
@@ -370,17 +389,17 @@ function MainProfile(ids: any) {
 											<span className="tracking-wide">Education</span>
 										</div>
 										<div className="flex items-center">
-											{fullProfile?.user?._id === user?._id &&
-												fullProfile?.user?.email === user?.email &&
-												fullProfile?.user?.name === user?.name && (
+											{fullProfile?.user?._id === user?.[0]?._id &&
+												fullProfile?.user?.email === user?.[0]?.email &&
+												fullProfile?.user?.name === user?.[0]?.name && (
 													<HiPencilAlt
 														onClick={() => setEduPopup(true)}
 														className="w-5 h-5 cursor-pointer text-primary sm:mr-8 mb-2"
 													/>
 												)}
-											{fullProfile?.user?._id === user?._id &&
-												fullProfile?.user?.email === user?.email &&
-												fullProfile?.user?.name === user?.name &&
+											{fullProfile?.user?._id === user?.[0]?._id &&
+												fullProfile?.user?.email === user?.[0]?.email &&
+												fullProfile?.user?.name === user?.[0]?.name &&
 												eduPopup && (
 													<Education
 														handlePop={(e: boolean) => setEduPopup(e)}

@@ -6,10 +6,6 @@ import axios from "axios";
 import ScrollableFeed from "react-scrollable-feed";
 import { MdDeleteOutline } from "react-icons/md";
 import moment from "moment";
-// import { io } from "socket.io-client";
-
-// const ENDPOINT = "http://localhost:5000/";
-// var socket: any, selectedChatCompare: any;
 
 function MessageShow() {
 	const { selectedChat, currentUser, sendMessageData, chats } = useChat();
@@ -17,48 +13,22 @@ function MessageShow() {
 	const [open, setOpen] = useState(false);
 	const [currMessageId, setCurrMessageId] = useState("");
 	const cuserId = [currentUser][0]?._id;
-	// const [socketConnected, setSocketConnected] = useState(false);
-
-	// useEffect(() => {
-	// 	socket = io(ENDPOINT);
-	// 	socket.emit("setup", currentUser);
-	// 	socket.on("connection", () => setSocketConnected(true));
-	// }, []);
 	const fetchMessage = async () => {
 		try {
 			const { data } = await axios.post(
-				`http://localhost:5000/api/recievemsg/`,
+				`https://postr-server.vercel.app/api/recievemsg/`,
 				{
 					chatId: [selectedChat][0]?._id,
 				}
 			);
 			setMessages(data);
-			// socket.emit("join room", [selectedChat][0]?._id); // join room
 		} catch (error) {
 			console.log(error);
 		}
 	};
 	useEffect(() => {
 		fetchMessage();
-		// selectedChatCompare = selectedChat;
 	}, [selectedChat, sendMessageData.content, chats]);
-
-	// useEffect(() => {
-	// 	socket.on("message received", (message: any) => {
-	// 		if (
-	// 			!selectedChatCompare ||
-	// 			[selectedChatCompare][0]?._id !== message?.chat?._id
-	// 		) {
-	// 			// socket.emit("notification", message);
-	// 			return; //give Notification
-	// 		}
-	// 		setMessages((messages: any) => [...messages, message]);
-	// 	});
-	// });
-
-	// useEffect(() => {
-	// 	socket.emit("new message", sendMessageData);
-	// }, [sendMessageData.content]);
 
 	const checkLastMessage = (i: any) => {
 		return (
@@ -71,9 +41,12 @@ function MessageShow() {
 	const deleteMessage = async (messageId: string, sennderId: string) => {
 		if (sennderId === cuserId) {
 			try {
-				await axios.post(`http://localhost:5000/api/deleteMessages/`, {
-					messageId: messageId,
-				});
+				await axios.post(
+					`https://postr-server.vercel.app/api/deleteMessages/`,
+					{
+						messageId: messageId,
+					}
+				);
 			} catch (error) {
 				alert("some error occur to delete");
 			}
