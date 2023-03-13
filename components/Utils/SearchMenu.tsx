@@ -4,7 +4,6 @@ import { useQuery } from "react-query";
 import { getUser } from "../../lib/getUser";
 import useclickOutside from "./clickOutside";
 import { BiSearch } from "react-icons/bi";
-import Link from "next/link";
 import Image from "next/image";
 import { AiOutlineRight } from "react-icons/ai";
 import { useRouter } from "next/router";

@@ -26,7 +26,7 @@ function Education({ ids, handlePop }: any) {
 			return;
 		}
 		const result = await axios.post(
-			`http://localhost:5000/api/createeducation/`,
+			`https://postr-server.vercel.app/api/createeducation/`,
 			profileData
 		);
 		if (result?.data) {
@@ -72,7 +72,7 @@ function Education({ ids, handlePop }: any) {
 					</div>
 					<div className="relative">
 						<p className="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute">
-							degree
+							Degree
 						</p>
 						<input
 							placeholder="B.Tech"
@@ -89,7 +89,7 @@ function Education({ ids, handlePop }: any) {
 							fieldofstudy
 						</p>
 						<input
-							placeholder="B.Tech"
+							placeholder="CSE"
 							type="text"
 							name="fieldofstudy"
 							onChange={(e: any) => handleInput(e)}
@@ -106,7 +106,7 @@ function Education({ ids, handlePop }: any) {
 							from
 						</p>
 						<input
-							placeholder="Enter Your Address"
+							placeholder="From"
 							type="text"
 							name="from"
 							onChange={(e: any) => handleInput(e)}
@@ -123,7 +123,7 @@ function Education({ ids, handlePop }: any) {
 							to
 						</p>
 						<input
-							placeholder="Enter Your Skills with ,"
+							placeholder="To"
 							type="text"
 							name="to"
 							onChange={(e: any) => handleInput(e)}
@@ -141,13 +141,12 @@ function Education({ ids, handlePop }: any) {
 						</p>
 						<textarea
 							name="description"
+							placeholder="Enter Description"
 							onChange={(e: any) => handleInput(e)}
 							className="border placeholder-mid focus:outline-none
                   focus:border-dark w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
                   border-mid/50 rounded-md"
-						>
-							Message . . .
-						</textarea>
+						></textarea>
 					</div>
 					<div className="relative">
 						<button

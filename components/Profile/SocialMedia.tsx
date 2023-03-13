@@ -21,12 +21,18 @@ function SocialMedia({ ids, handlePop }: any) {
 			profileData.instagram.trim() == "" ||
 			profileData.linkedin.trim() == "" ||
 			profileData.twitter.trim() == "" ||
-			profileData.youtube.trim() == ""
+			profileData.youtube.trim() == "" ||
+			!profileData.facebook.includes("https://www.facebook.com/") ||
+			!profileData.github.includes("https://github.com/") ||
+			!profileData.instagram.includes("https://www.instagram.com/") ||
+			!profileData.linkedin.includes("https://www.linkedin.com/in") ||
+			!profileData.twitter.includes("https://twitter.com/") ||
+			!profileData.youtube.includes("https://www.youtube.com/")
 		) {
 			return;
 		}
 		const result = await axios.post(
-			`http://localhost:5000/api/socialmediaupdate/`,
+			`https://postr-server.vercel.app/api/socialmediaupdate/`,
 			profileData
 		);
 		if (result?.data) {
@@ -157,7 +163,13 @@ function SocialMedia({ ids, handlePop }: any) {
 								profileData.instagram.trim() == "" ||
 								profileData.linkedin.trim() == "" ||
 								profileData.twitter.trim() == "" ||
-								profileData.youtube.trim() == ""
+								profileData.youtube.trim() == "" ||
+								!profileData.facebook.includes("https://www.facebook.com/") ||
+								!profileData.github.includes("https://github.com/") ||
+								!profileData.instagram.includes("https://www.instagram.com/") ||
+								!profileData.linkedin.includes("https://www.linkedin.com/in") ||
+								!profileData.twitter.includes("https://twitter.com/") ||
+								!profileData.youtube.includes("https://www.youtube.com/")
 							}
 							onClick={() => updateProfile()}
 							className="w-full disabled:bg-secondary disabled:cursor-not-allowed inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-primary

@@ -27,7 +27,7 @@ function HomePage() {
 	});
 	useEffect(() => {
 		setCurrentUser(cuserData);
-	}, [cuserData]);
+	}, [data]);
 
 	return (
 		<div className="bg-light w-full h-screen rounded-r-3xl z-20">

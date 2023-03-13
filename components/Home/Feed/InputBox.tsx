@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { FaUserAlt, FaSmile, FaImages } from "react-icons/fa";
+import { FaSmile, FaImages } from "react-icons/fa";
 import { db, storage } from "../../../firebaseData";
 import {
 	collection,
@@ -22,7 +22,6 @@ function InputBox() {
 	const [load, setLoad] = useState("");
 	const [selectedfile, setSelectedfile] = useState(null);
 	const [showEmoji, setShowEmoji] = useState(false);
-	const inputRef = useRef(null);
 
 	const addImageToPost = (e: any) => {
 		const reader = new FileReader();
@@ -37,9 +36,6 @@ function InputBox() {
 
 	const sendPost = async (e: any) => {
 		e.preventDefault();
-
-		if (!inputRef.current) return;
-		if (inputRef.current == " ") return;
 		if (load.trim() == "") return;
 
 		const docRef = await addDoc<DocumentData>(collection(db, "posts"), {
@@ -77,23 +73,19 @@ function InputBox() {
 		<>
 			<div className="absolute bottom-0 left-[15%] sm:left-[10%] md:left-[25rem]  sm:right-[2%] right-[1%] z-[5] max-w-[35rem] xl:max-w-3xl w-[-webkit-fill-available] mx-auto bg-light h-32 rounded-t-3xl">
 				<div className="flex py-2 w-full sm:space-x-3">
-					{image == undefined ? (
-						<FaUserAlt className="h-12 w-12 ml-2 hidden sm:inline-flex text-mid " />
-					) : (
-						<Image
-							className="rounded-full hidden sm:inline-flex cursor-pointer ml-2 sm:w-12 sm:h-12"
-							src={image}
-							width={35}
-							height={35}
-							alt={name}
-						/>
-					)}
+					<Image
+						priority
+						className="rounded-full hidden sm:inline-flex cursor-pointer ml-2 sm:w-12 sm:h-12"
+						src={image}
+						width={35}
+						height={35}
+						alt={name}
+					/>
 					<div className="w-full ml-3 sm:ml-0">
 						<form className="flex flex-1 w-full">
 							<input
 								type="text"
 								value={load}
-								ref={inputRef}
 								onChange={(e) => setLoad(e.target.value)}
 								className="rounded-full md:h-12 h-10 pl-3 bg-gray-100 flex-grow focus:outline-none"
 								placeholder={`Message Here . . .`}
@@ -108,7 +100,6 @@ function InputBox() {
 										className="w-4 h-4 mr-2 bg-[#149FFF] rounded-full text-[#149FFF] text-2xl animate-spin fill-white"
 										viewBox="0 0 100 101"
 										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
 									>
 										<path
 											d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -155,9 +146,10 @@ function InputBox() {
 						<Image
 							className="rounded-2xl h-full xl:h-72 xl:w-[75%] max-h-72 mx-auto object-contain"
 							src={selectedfile}
+							priority
 							width={120}
 							height={180}
-							alt="image"
+							alt="Post image"
 						/>
 					</div>
 				)}

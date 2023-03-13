@@ -18,7 +18,7 @@ function MakeGroupPopup({ handlefunc, datas, ids }: any) {
 			return;
 		} else {
 			const result = await axios.get(
-				`http://localhost:5000/chat/user?search=${search}`
+				`https://postr-server.vercel.app/chat/user?search=${search}`
 			);
 			setSearchResult(result.data);
 		}
@@ -47,7 +47,7 @@ function MakeGroupPopup({ handlefunc, datas, ids }: any) {
 			alert("Please Add More User");
 			return;
 		}
-		const result = await axios.post("http://localhost:5000/group", {
+		const result = await axios.post("https://postr-server.vercel.app/group", {
 			name: groupName,
 			users: JSON.stringify(selectedUser.map((u: any) => u._id)),
 		});

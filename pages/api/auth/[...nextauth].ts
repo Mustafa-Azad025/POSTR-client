@@ -26,6 +26,6 @@ export const authOptions = {
 			clientSecret: process.env.LINKEDIN_CLIENT_SECRET as string,
 		}),
 	],
-	secret: process.env.SECRET_KEY_FOR_AUTH,
+	secret: process.env.SECRET_KEY_FOR_AUTH as string,
 };
 export default NextAuth(authOptions);

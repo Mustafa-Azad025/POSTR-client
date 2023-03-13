@@ -1,6 +1,6 @@
 import axios from "axios";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { AiOutlineRight } from "react-icons/ai";
 import { useChat } from "./../../context/ChatManage";
 
@@ -8,10 +8,13 @@ function ChatAccess({ ids, currentid, name, email, img }: any) {
 	const { setChats, chats } = useChat();
 	const accessData = async () => {
 		try {
-			const { data } = await axios.post(`http://localhost:5000/api/message/`, {
-				id: ids,
-				currentuser: currentid,
-			});
+			const { data } = await axios.post(
+				`https://postr-server.vercel.app/api/message/`,
+				{
+					id: ids,
+					currentuser: currentid,
+				}
+			);
 			if (
 				chats?.filter((item: any) => item?.email == email && item?.name == name)
 			) {

@@ -16,9 +16,12 @@ function FetchData({ datass, name, email }: any) {
 	});
 	const id = currentData?.[0]?._id;
 	const datas = async () => {
-		const data = await axios.post(`http://localhost:5000/api/messagefetch/`, {
-			id: id,
-		});
+		const data = await axios.post(
+			`https://postr-server.vercel.app/api/messagefetch/`,
+			{
+				id: id,
+			}
+		);
 		setChats(data?.data);
 	};
 	useEffect(() => {

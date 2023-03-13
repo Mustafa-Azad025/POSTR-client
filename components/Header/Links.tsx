@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { HiUserGroup } from "react-icons/hi";
-import { MdOutlineSlowMotionVideo } from "react-icons/md";
+// import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import { IoChatbubbleSharp, IoHome } from "react-icons/io5";
 import { useRouter } from "next/router";
 
@@ -11,7 +11,7 @@ function Links() {
 		{ link: "/", icon: IoHome },
 		{ link: "/chat", icon: IoChatbubbleSharp },
 		{ link: "/group", icon: HiUserGroup },
-		{ link: "/reel", icon: MdOutlineSlowMotionVideo },
+		// { link: "/reel", icon: MdOutlineSlowMotionVideo },
 	];
 	return (
 		<div className="space-y-10 mt-16 grid grid-cols-1">

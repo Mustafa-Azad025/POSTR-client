@@ -76,11 +76,9 @@ function Comments({ ids, mail, commentt }: any) {
 									className="relative left-[50%] md:left-[85%]  top-3 z-50"
 								>
 									<svg
-										aria-hidden="true"
 										className="w-4 h-4 relative -top-10 right-0 bg-[#149FFF] rounded-full text-[#149FFF] text-2xl animate-spin fill-white"
 										viewBox="0 0 100 101"
 										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
 									>
 										<path
 											d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -119,18 +117,18 @@ function Comments({ ids, mail, commentt }: any) {
 							<MdSend size="1.5rem" className="mx-auto p-1" />
 						</button>
 					</div>
-					{commentt.length > 0 && (
+					{commentt?.length > 0 && (
 						<div className="h-[110%] overflow-y-scroll">
-							{commentt.map((comment: any) => (
+							{commentt?.map((comment: any) => (
 								<div
-									key={comment.id}
+									key={comment?.id}
 									className="w-[18rem] sm:mx-auto sm:w-[94%] xl:ml-2"
 								>
 									<div className="md:max-w-4xl mx-auto max-w-[88%] px-10 my-4 py-6 bg-white rounded-lg shadow-md">
 										<div className="flex justify-between items-center">
 											<span className="font-light text-gray-600">
 												<Moment fromNow className="mr-2">
-													{comment.data().time?.toDate()}
+													{comment?.data()?.time?.toDate()}
 												</Moment>
 											</span>
 											<div className="px-2 py-1 bg-gray-600 text-gray-100 font-bold rounded hover:bg-gray-500">
@@ -143,12 +141,12 @@ function Comments({ ids, mail, commentt }: any) {
 													truncate ? `truncate text-dark` : `text-dark`
 												}
 											>
-												{comment.data().comment}
+												{comment?.data()?.comment}
 											</p>
 										</div>
 										<div className="flex justify-between items-center mt-4">
 											<div onClick={() => setTruncate(!truncate)}>
-												{comment.data().comment.split(" ").length > 5 && (
+												{comment?.data()?.comment?.split(" ")?.length > 5 && (
 													<p className="text-primary cursor-pointer ml-4 xl:mx-10 my-2">
 														Read {!truncate ? `More` : `Less`}
 													</p>
@@ -156,7 +154,7 @@ function Comments({ ids, mail, commentt }: any) {
 											</div>
 											<div>
 												<div className="flex items-center">
-													{comment.data().image && (
+													{comment?.data()?.image && (
 														<Image
 															width={40}
 															height={40}
