@@ -23,6 +23,6 @@
 		"model/registerUser.js",
 		"pages/api/auth/[...nextauth].ts",
 		"context/ChatManage.js"
-	],
+, "lib/mongodb.js"	],
 	"exclude": ["node_modules"]
 }
