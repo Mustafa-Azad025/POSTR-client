@@ -7,13 +7,15 @@ import { AiOutlineRight } from "react-icons/ai";
 import { useRouter } from "next/router";
 import ChatAccess from "../Chat/ChatAccess";
 import axios from "axios";
+import { getUser } from "../../lib/getUser";
+import { useQuery } from "react-query";
 
 function SearchMenu() {
+	const { isLoading, isError, data, error } = useQuery("users", getUser);
 	const [down, setDown] = useState(false);
 	const [search, setSearch] = useState(false);
 	const { data: session } = useSession();
 	const { email, name }: any = session?.user;
-	const [currentId, setCurrentId] = useState();
 	const router = useRouter();
 
 	const el = useRef<HTMLDivElement>(null);
@@ -35,7 +37,12 @@ function SearchMenu() {
 			setSearchResult(result.data);
 		}
 	};
-
+	const current = data?.filter((item: any) => {
+		if (item.name == name && item.email == email) {
+			return item;
+		}
+	});
+	const currentId = current?.[0]?._id;
 	return (
 		<>
 			<div className="flex mt-7 sm:mt-8 items-center ml-6">

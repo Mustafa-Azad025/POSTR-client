@@ -79,7 +79,7 @@ function GroupMessageShow() {
 	return (
 		<>
 			{[groupSelect][0]._id && (
-				<div className="absolute left-[15%] top-10 sm:left-[10%] md:left-[25rem]  sm:right-[2%] right-[1%] z-[5] max-w-[35rem] xl:max-w-3xl w-[-webkit-fill-available] mx-auto bg-light rounded-t-3xl">
+				<div className="absolute left-[15%] top-10 sm:left-[10%] md:left-[25rem] h-[80vh] overflow-y-scroll overflow-x-hidden sm:right-[2%] right-[1%] z-[5] max-w-[35rem] xl:max-w-3xl w-[-webkit-fill-available] mx-auto bg-light rounded-t-3xl">
 					{[groupSelect]?.map((item: any) => {
 						return (
 							<div
@@ -106,7 +106,7 @@ function GroupMessageShow() {
 							</div>
 						);
 					})}
-					<div className="bg-white p-2 mt-2 rounded-2xl shadow-md w-[-webkit-fill-available] text-gray-400 overflow-y-scroll overflow-x-hidden scrollbar-hide justify-center font-medium h-[72vh]">
+					<div className="bg-white p-2 mt-2 rounded-2xl shadow-md w-[-webkit-fill-available] text-gray-400 overflow-y-scroll overflow-x-hidden scrollbar-hide justify-center font-medium h-[70vh] ">
 						<ScrollableFeed>
 							{messages &&
 								messages?.map((item: any, id: any) => {
