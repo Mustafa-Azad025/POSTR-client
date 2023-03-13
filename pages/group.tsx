@@ -5,9 +5,7 @@ import SideHeader from "../components/Header/SideHeader";
 import GroupHeader from "../components/Groups/GroupHeader";
 import GroupMain from "../components/Groups/GroupMain";
 
-function group() {
-	const { data: session } = useSession();
-
+function group({ session }: any) {
 	return (
 		<>
 			{session && (
@@ -33,7 +31,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 		};
 	}
 	return {
-		props: {},
+		props: {
+			session,
+		},
 	};
 };
 

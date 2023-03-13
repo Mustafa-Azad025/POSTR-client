@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://postrapp.vercel.app/";
 
 export const getUser = async () => {
 	const res = await fetch(`${BASE_URL}/api/userr`);

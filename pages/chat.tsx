@@ -5,9 +5,7 @@ import type { GetServerSideProps } from "next";
 import ChatHead from "./../components/Chat/ChatHead";
 import ChatMain from "./../components/Chat/ChatMain";
 
-function chat() {
-	const { data: session } = useSession();
-
+function chat({ session }: any) {
 	return (
 		<>
 			{session && (
@@ -34,7 +32,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 		};
 	}
 	return {
-		props: {},
+		props: {
+			session,
+		},
 	};
 };
 

@@ -7,22 +7,22 @@ export default function login() {
 	const [login, setLogin] = useState<boolean>(false);
 	const handleGoogleAuth = async () => {
 		signIn("google", {
-			callbackUrl: "/",
+			callbackUrl: "https://postrapp.vercel.app/",
 		});
 	};
 	const handleGithubAuth = async () => {
 		signIn("github", {
-			callbackUrl: "/",
+			callbackUrl: "https://postrapp.vercel.app/",
 		});
 	};
 	const handleDiscordAuth = async () => {
 		signIn("discord", {
-			callbackUrl: "/",
+			callbackUrl: "https://postrapp.vercel.app/",
 		});
 	};
 	const handleLinkedinAuth = async () => {
 		signIn("linkedin", {
-			callbackUrl: "/",
+			callbackUrl: "https://postrapp.vercel.app/",
 		});
 	};
 

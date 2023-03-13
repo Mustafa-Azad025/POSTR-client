@@ -1,19 +1,16 @@
 import { useSession } from "next-auth/react";
 import React, { useRef, useState } from "react";
-import { useQuery } from "react-query";
-import { getUser } from "../../lib/getUser";
 import useclickOutside from "./clickOutside";
 import { BiSearch } from "react-icons/bi";
 import Image from "next/image";
 import { AiOutlineRight } from "react-icons/ai";
 import { useRouter } from "next/router";
 import ChatAccess from "../Chat/ChatAccess";
+import axios from "axios";
 
 function SearchMenu() {
-	const { isLoading, isError, data, error } = useQuery("users", getUser);
 	const [down, setDown] = useState(false);
 	const [search, setSearch] = useState(false);
-	const [d, setD] = useState(data);
 	const { data: session } = useSession();
 	const { email, name }: any = session?.user;
 	const [currentId, setCurrentId] = useState();
@@ -26,25 +23,17 @@ function SearchMenu() {
 			el.current == null ? el.current : (el.current.style.display = "none"),
 	});
 
-	if (isLoading)
-		return (
-			<div className="max-w-72 bg-white font-bold">Wait It is Loading</div>
-		);
-	if (isError)
-		return (
-			<div className="max-w-72 bg-white text-warn font-bold">Error Occured</div>
-		);
-	const searchdata = async (e: any) => {
-		const result = await data.filter((item: any) => {
-			if (item.name == name && item.email == email) {
-				setCurrentId(item._id);
-			}
-			if (!e) {
-				return setD(data);
-			}
-			return item.name.includes(e) || item.email.includes(e);
-		});
-		setD(result);
+	const [searchResult, setSearchResult]: any = useState([]);
+	const handleSearch = async (search: any) => {
+		if (!search || search.trim() == "" || search.length < 3) {
+			setSearchResult([]);
+			return;
+		} else {
+			const result = await axios.get(
+				`https://postr-server.vercel.app/chat/user?search=${search}`
+			);
+			setSearchResult(result.data);
+		}
 	};
 
 	return (
@@ -66,7 +55,7 @@ function SearchMenu() {
 								setDown(true);
 							}
 						}}
-						onChange={(e: any) => searchdata(e.target.value)}
+						onChange={(e: any) => handleSearch(e.target.value)}
 						className="p-1 sm:p-2 pl-10 sm:pl-14 -ml-8 rounded-3xl mr-2"
 						placeholder="Search . . . ."
 					/>
@@ -82,7 +71,7 @@ function SearchMenu() {
 								setDown(true);
 							}
 						}}
-						onChange={(e: any) => searchdata(e.target.value)}
+						onChange={(e: any) => handleSearch(e.target.value)}
 						className="p-1 sm:p-2 pl-10 sm:pl-14 -ml-8 rounded-3xl mr-2"
 						placeholder="Search . . . ."
 					/>
@@ -98,7 +87,7 @@ function SearchMenu() {
 							<p className=" font-medium select-none">Searching ....</p>
 						</div>
 						{router.pathname != "/chat" &&
-							d?.map((item: any) => {
+							searchResult?.map((item: any) => {
 								if (item.email == email && item.name == name) return;
 								return (
 									<a
@@ -124,7 +113,7 @@ function SearchMenu() {
 								);
 							})}
 						{router.pathname == "/chat" &&
-							d?.map((item: any) => {
+							searchResult?.map((item: any) => {
 								if (item.email == email && item.name == name) {
 									return;
 								}

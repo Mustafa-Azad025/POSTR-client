@@ -5,8 +5,7 @@ import SideHeader from "../components/Header/SideHeader";
 import HomePage from "../components/Home/HomePage";
 import Feed from "../components/Home/Feed";
 
-const Home: NextPage = () => {
-	const { data: session } = useSession();
+const Home: NextPage = ({ session }: any) => {
 	return (
 		<>
 			<Head>
