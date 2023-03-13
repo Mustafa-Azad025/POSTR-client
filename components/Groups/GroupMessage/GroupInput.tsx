@@ -48,7 +48,7 @@ function GroupInput() {
 	if ([groupSelect][0]._id) {
 		return (
 			<div className="">
-				<div className="absolute bottom-0 left-[15%] sm:left-[10%] md:left-[25rem]  sm:right-[2%] right-[1%] z-[5] max-w-[35rem] xl:max-w-3xl w-[-webkit-fill-available] mx-auto bg-light rounded-t-3xl">
+				<div className="absolute bottom-0 left-[15%] sm:left-[10%] md:left-[25rem]  sm:right-[2%] right-[1%] z-[30] max-w-[35rem] xl:max-w-3xl w-[-webkit-fill-available] mx-auto bg-light rounded-t-3xl">
 					<div className="flex pt-2 pr-1 w-full sm:space-x-3">
 						<div className="w-full ml-3 sm:ml-0">
 							<div className="flex flex-1 w-full">
