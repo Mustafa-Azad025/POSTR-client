@@ -5,15 +5,17 @@ import Navbar from "../../components/Profile/Navbar";
 import MainProfile from "../../components/Profile/MainProfile";
 import { useRouter } from "next/router";
 
-function profile() {
+function profile({ session }: any) {
 	const router = useRouter();
 	const { mail } = router.query;
 	return (
 		<>
-			<div className="flex sm:space-x-4 lg:space-x-8">
-				<Navbar />
-				<MainProfile ids={mail} />
-			</div>
+			{session && (
+				<div className="flex sm:space-x-4 lg:space-x-8">
+					<Navbar />
+					<MainProfile ids={mail} />
+				</div>
+			)}
 		</>
 	);
 }
@@ -30,7 +32,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 		};
 	}
 	return {
-		props: {},
+		props: {
+			session,
+		},
 	};
 };
 export default profile;
